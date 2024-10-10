@@ -1,10 +1,11 @@
 import type { Metadata } from 'next';
 import { poppins } from '@/lib/font';
+import { APP_DESCRIPTION, APP_META_TITLE } from '@/lib/const';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Cat Nema | Watch any movie freely',
-  description: 'Watch free movie in CatNema',
+  title: APP_META_TITLE,
+  description: APP_DESCRIPTION,
 };
 
 export default function RootLayout({
