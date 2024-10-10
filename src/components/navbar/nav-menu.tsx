@@ -1,18 +1,21 @@
 'use client';
 
+import { cn } from '@/lib/utils';
 import Link from 'next/link';
-import React from 'react';
+import { usePathname } from 'next/navigation';
 import { IconType } from 'react-icons';
 import { FaTv } from 'react-icons/fa';
 import { IoMdList } from 'react-icons/io';
-import { IoHomeOutline } from 'react-icons/io5';
+import { LuLayoutDashboard } from 'react-icons/lu';
 import { MdOutlineLocalMovies } from 'react-icons/md';
 
 export function NavMenu() {
+  const pathname = usePathname();
+
   const navMenuList = [
     {
       title: 'Home',
-      icon: IoHomeOutline,
+      icon: LuLayoutDashboard,
       link: '/',
       available: true,
     },
@@ -20,18 +23,18 @@ export function NavMenu() {
       title: 'TV Series',
       icon: FaTv,
       link: '/tv-series',
-      available: false,
+      available: true,
     },
     {
       title: 'Movies',
       icon: MdOutlineLocalMovies,
       link: '/movies',
-      available: false,
+      available: true,
     },
     {
       title: 'Watch List',
       icon: IoMdList,
-      link: '/movies',
+      link: '/watch-list',
       available: false,
     },
   ];
@@ -44,11 +47,17 @@ export function NavMenu() {
     <nav className="flex items-center gap-6">
       {navMenuList.map((menu, idx) => {
         const menuIcon = configIcon(menu.icon);
+        const isPathMatches = menu.link === pathname;
+        const activeClass = 'text-foreground font-bold';
+
         return (
           <Link
             key={idx}
             href={menu.available ? menu.link : ''}
-            className="flex items-center gap-2.5 text-foreground/90 hover:text-foreground transition-colors duration-100"
+            className={cn(
+              'flex items-center gap-2.5 transition-all duration-200 select-none',
+              isPathMatches ? activeClass : 'text-foreground/80 hover:text-foreground',
+            )}
           >
             {menuIcon}
             {menu.title}
