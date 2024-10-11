@@ -1,1 +1,2 @@
-export * from './fetchNowPlayingTv';
+export * from './fetchNowPlayingTVSeries';
+export * from './fetchPopularTVSeries';
