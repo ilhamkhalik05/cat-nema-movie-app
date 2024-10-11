@@ -1,11 +1,16 @@
-import { fetchNowPlayingTVSeries, fetchPopularTVSeries } from '@/services/tv';
+import { fetchNowPlayingTVSeries, fetchPopularTVSeries, fetchTopRatedTVSeries } from '@/services/tv';
 
 import Banner from '@/components/banner';
 import Footer from '@/components/footer';
 import TVCardList from '@/components/tv-card-list';
 
 export default async function TVSeriesPage() {
-  const [nowPlayingTVSeries, popularTVSeries] = await Promise.all([fetchNowPlayingTVSeries(), fetchPopularTVSeries()]);
+  const [nowPlayingTVSeries, popularTVSeries, topRatedTVSeries] = await Promise.all([
+    fetchNowPlayingTVSeries(),
+    fetchPopularTVSeries(),
+    fetchTopRatedTVSeries(),
+  ]);
+
   const latestTVSeries = nowPlayingTVSeries[nowPlayingTVSeries.length - 1];
 
   return (
@@ -21,6 +26,11 @@ export default async function TVSeriesPage() {
         <section>
           <h1 className="text-2xl font-[600] tracking-wider mb-7">Popular</h1>
           <TVCardList tvSeries={popularTVSeries} />
+        </section>
+
+        <section>
+          <h1 className="text-2xl font-[600] tracking-wider mb-7">All Time Best</h1>
+          <TVCardList tvSeries={topRatedTVSeries} />
         </section>
       </main>
 
