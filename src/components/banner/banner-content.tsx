@@ -5,7 +5,7 @@ import { PiShootingStarFill } from 'react-icons/pi';
 import { FaRegEye } from 'react-icons/fa';
 
 type BannerContentProps = {
-  title: string;
+  titleOrName: string;
   popularity: number;
   voteAverage: number;
   voteCount: number;
@@ -13,11 +13,11 @@ type BannerContentProps = {
 };
 
 export function BannerContent(props: BannerContentProps) {
-  const { title, popularity, voteAverage, voteCount, overview } = props;
+  const { titleOrName, popularity, voteAverage, voteCount, overview } = props;
   return (
     <div className="absolute left-0 top-1/2 translate-y-8 flex flex-col size-full px-8">
       <section className="flex flex-col gap-2">
-        <h1 className="text-3xl tracking-widest font-[800]">{title}</h1>
+        <h1 className="text-3xl tracking-widest font-[800]">{titleOrName}</h1>
 
         <div className="flex items-center gap-5 text-gray-200 text-sm">
           <div className="flex items-center gap-2">
@@ -31,7 +31,7 @@ export function BannerContent(props: BannerContentProps) {
           </div>
         </div>
 
-        <p className="text-foreground/90 w-3/4 break-words">{overview}</p>
+        <p className="text-foreground/90 w-3/4 break-words">{overview || 'There is no overview for this item'}</p>
       </section>
 
       <div className="flex items-center gap-3 mt-6">
