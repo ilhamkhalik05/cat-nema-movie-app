@@ -1,6 +1,8 @@
-const API_BASE_URL = process.env.NEXT_PUBLIC_APIBASEURL;
-const API_BASE_IMG_URL = process.env.NEXT_PUBLIC_APIBASEIMGURL;
-const API_KEY = process.env.NEXT_PUBLIC_APIKEY;
-const API_READ_ACCESS_TOKEN = process.env.NEXT_PUBLIC_APIREADACCESSTOKEN;
+export const API_BASE_URL = process.env.NEXT_PUBLIC_APIBASEURL;
+export const API_BASE_IMG_URL = process.env.NEXT_PUBLIC_APIBASEIMGURL;
+export const API_KEY = process.env.NEXT_PUBLIC_APIKEY;
+export const API_READ_ACCESS_TOKEN = process.env.NEXT_PUBLIC_APIREADACCESSTOKEN;
 
-export { API_BASE_URL, API_BASE_IMG_URL, API_KEY, API_READ_ACCESS_TOKEN };
+export function handleFetchApiError(action: string, statusText: string) {
+  throw new Error(`Error while ${action}: ${statusText}`);
+}
