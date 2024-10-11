@@ -8,12 +8,11 @@ type BannerContentProps = {
   titleOrName: string;
   popularity: number;
   voteAverage: number;
-  voteCount: number;
   overview: string;
 };
 
 export function BannerContent(props: BannerContentProps) {
-  const { titleOrName, popularity, voteAverage, voteCount, overview } = props;
+  const { titleOrName, popularity, voteAverage, overview } = props;
   return (
     <div className="absolute left-0 top-1/2 translate-y-8 flex flex-col size-full px-8">
       <section className="flex flex-col gap-2">
@@ -27,7 +26,7 @@ export function BannerContent(props: BannerContentProps) {
 
           <div className="flex items-center gap-2">
             <PiShootingStarFill size={24} className="text-yellow-300" />
-            {voteAverage}/{voteCount}
+            {voteAverage.toFixed(1)}/10
           </div>
         </div>
 

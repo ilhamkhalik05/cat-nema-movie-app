@@ -14,7 +14,6 @@ export default function Banner({ bannerType, item }: BannerProps): React.ReactNo
   const posterPath = isMovie ? (item as Movie).poster_path : (item as TVSeries).poster_path;
   const popularity = item.popularity;
   const voteAverage = item.vote_average;
-  const voteCount = item.vote_count;
   const overview = item.overview;
 
   return (
@@ -31,7 +30,6 @@ export default function Banner({ bannerType, item }: BannerProps): React.ReactNo
         titleOrName={titleOrName}
         popularity={popularity}
         voteAverage={voteAverage}
-        voteCount={voteCount}
         overview={overview}
       />
     </div>
