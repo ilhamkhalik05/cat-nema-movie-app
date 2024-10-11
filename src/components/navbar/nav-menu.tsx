@@ -23,13 +23,13 @@ export function NavMenu() {
       title: 'TV Series',
       icon: FaTv,
       link: '/tv-series',
-      available: true,
+      available: false,
     },
     {
       title: 'Movies',
       icon: MdOutlineLocalMovies,
       link: '/movies',
-      available: true,
+      available: false,
     },
     {
       title: 'Watch List',
