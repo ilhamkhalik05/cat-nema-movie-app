@@ -2,18 +2,17 @@ import Image from 'next/image';
 import { Movie } from '@/lib/type';
 import { Card, CardContent, CardTitle } from '../@shadcn-ui/card';
 import { getApiImage } from '@/lib/utils';
-import { brandLogo } from '@/lib/assets';
+import { brandLogo, fallbackCardImage } from '@/lib/assets';
 
 export default function MovieCardList({ movies }: { movies: Movie[] }) {
   return (
     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5">
       {movies.map((movie, idx) => (
         <Card key={idx} className="group relative cursor-pointer h-40">
-         
           {/* Backdrop Movie Image */}
           <Image
             className="size-full object-cover rounded-xl group-hover:brightness-[0.45] transition-all duration-200"
-            src={getApiImage(movie.backdrop_path)}
+            src={movie.backdrop_path ? getApiImage(movie.backdrop_path) : fallbackCardImage.src}
             alt="Error occurred"
             width={500}
             height={500}
