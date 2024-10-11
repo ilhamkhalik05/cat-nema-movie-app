@@ -1,18 +1,18 @@
-import Navbar from '@/components/navbar';
+import { fetchNowPlayingMovies } from '@/services/movie';
+import { fetchNowPlayingTVSeries } from '@/services/tv';
+
 import Banner from '@/components/banner';
 import MovieCardList from '@/components/movie-card-list';
 import TVCardList from '@/components/tv-card-list';
-import { fetchNowPlayingMovies } from '@/services/movie';
-import { fetchNowPlayingTv } from '@/services/tv';
+import Footer from '@/components/footer';
 
 export default async function HomePage() {
-  const [nowPlayingMovies, nowPlayingTv] = await Promise.all([fetchNowPlayingMovies(), fetchNowPlayingTv()]);
+  const [nowPlayingMovies, nowPlayingTVSeries] = await Promise.all([fetchNowPlayingMovies(), fetchNowPlayingTVSeries()]);
   const latestMovie = nowPlayingMovies[nowPlayingMovies.length - 1];
 
   return (
     <>
-      <Navbar />
-      <Banner latestMovie={latestMovie} />
+      <Banner bannerType="movie" item={latestMovie} />
 
       <main className="px-8 py-12 flex flex-col gap-20">
         <section>
@@ -22,9 +22,11 @@ export default async function HomePage() {
 
         <section>
           <h1 className="text-2xl font-[600] tracking-wider mb-7">TV Series</h1>
-          <TVCardList tvSeries={nowPlayingTv} />
+          <TVCardList tvSeries={nowPlayingTVSeries} />
         </section>
       </main>
+
+      <Footer />
     </>
   );
 }

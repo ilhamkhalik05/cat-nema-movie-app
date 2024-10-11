@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { poppins } from '@/lib/font';
 import { APP_DESCRIPTION, APP_META_TITLE } from '@/lib/const';
+import Navbar from '@/components/navbar';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -15,7 +16,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${poppins.className} antialiased`}>{children}</body>
+      <body className={`${poppins.className} antialiased`}>
+        <Navbar />
+        {children}
+      </body>
     </html>
   );
 }

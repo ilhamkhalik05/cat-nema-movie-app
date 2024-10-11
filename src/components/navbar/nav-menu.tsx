@@ -23,7 +23,7 @@ export function NavMenu() {
       title: 'TV Series',
       icon: FaTv,
       link: '/tv-series',
-      available: false,
+      available: true,
     },
     {
       title: 'Movies',
