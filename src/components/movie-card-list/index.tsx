@@ -2,7 +2,8 @@ import Image from 'next/image';
 import { Movie } from '@/lib/type';
 import { Card, CardContent, CardTitle } from '../@shadcn-ui/card';
 import { getApiImage } from '@/lib/utils';
-import { brandLogo, fallbackCardImage } from '@/lib/assets';
+import { fallbackCardImage } from '@/lib/assets';
+import { BrandLogo } from '../brand-logo';
 
 export default function MovieCardList({ movies }: { movies: Movie[] }) {
   return (
@@ -24,16 +25,11 @@ export default function MovieCardList({ movies }: { movies: Movie[] }) {
           </CardContent>
 
           {/* Left Bottom Brand Logo  */}
-          <div className="opacity-0 group-hover:opacity-85 transition-all duration-200 absolute left-0 bottom-0 flex items-center gap-1.5 p-3">
-            <Image
-              className="size-6 object-contain rounded-xl shadow-xl shadow-zinc-900"
-              src={brandLogo.src}
-              alt="error"
-              width={500}
-              height={500}
-            />
-            <h1 className="text-sm font-[600]">CatNema</h1>
-          </div>
+          <BrandLogo
+            containerClassName="opacity-0 group-hover:opacity-85 transition-all duration-200 absolute left-0 bottom-0 flex items-center gap-1 p-3"
+            imageClassName="size-6 object-contain rounded-xl shadow-3xl shadow-black"
+            titleClassName="text-sm font-[600]"
+          />
         </Card>
       ))}
     </div>

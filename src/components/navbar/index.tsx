@@ -1,7 +1,7 @@
 import { AiOutlineLogin } from 'react-icons/ai';
 import { Button } from '../@shadcn-ui/button';
-import { BrandLogo } from './brand-logo';
 import { NavMenu } from './nav-menu';
+import { BrandLogo } from '../brand-logo';
 
 export default function Navbar() {
   return (
