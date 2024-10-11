@@ -1,16 +1,13 @@
 import Navbar from '@/components/navbar';
 import Banner from '@/components/banner';
 import MovieCardList from '@/components/movie-card-list';
+import TVCardList from '@/components/tv-card-list';
 import { fetchNowPlayingMovies } from '@/services/movie';
 import { fetchNowPlayingTv } from '@/services/tv';
-import TVCardList from '@/components/tv-card-list';
 
 export default async function HomePage() {
-  const nowPlayingMovies = await fetchNowPlayingMovies();
-  const nowPlayingTv = await fetchNowPlayingTv();
+  const [nowPlayingMovies, nowPlayingTv] = await Promise.all([fetchNowPlayingMovies(), fetchNowPlayingTv()]);
   const latestMovie = nowPlayingMovies[nowPlayingMovies.length - 1];
-
-  console.log({ nowPlayingTv });
 
   return (
     <>
