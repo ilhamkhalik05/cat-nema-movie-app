@@ -47,7 +47,7 @@ export function NavMenu() {
     <nav className="flex items-center gap-6">
       {navMenuList.map((menu, idx) => {
         const menuIcon = configIcon(menu.icon);
-        const isPathMatches = menu.link === pathname;
+        const isPathMatches = menu.link === pathname || (menu.link !== '/' && pathname.includes(menu.link));
         const activeClass = 'text-foreground font-bold';
 
         return (
