@@ -7,7 +7,11 @@ import TVCardList from '@/components/tv-card-list';
 import Footer from '@/components/footer';
 
 export default async function HomePage() {
-  const [nowPlayingMovies, nowPlayingTVSeries] = await Promise.all([fetchNowPlayingMovies(), fetchNowPlayingTVSeries()]);
+  const [nowPlayingMovies, nowPlayingTVSeries] = await Promise.all([
+    fetchNowPlayingMovies(),
+    fetchNowPlayingTVSeries(),
+  ]);
+
   const latestMovie = nowPlayingMovies[nowPlayingMovies.length - 1];
 
   return (

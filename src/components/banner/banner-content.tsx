@@ -30,7 +30,7 @@ export function BannerContent(props: BannerContentProps) {
           </div>
         </div>
 
-        <p className="text-foreground/90 w-3/4 break-words">{overview || 'There is no overview for this item'}</p>
+        <p className="text-foreground/90 w-3/5 break-words">{overview || 'There is no overview for this item'}</p>
       </section>
 
       <div className="flex items-center gap-3 mt-6">
@@ -38,7 +38,7 @@ export function BannerContent(props: BannerContentProps) {
           <AiOutlinePlayCircle size={24} />
           Watch Now
         </Button>
-        <Button variant={'outline'} className="h-11 flex items-center gap-2 hover:bg-zinc-400">
+        <Button variant={'default'} className="h-11 flex items-center gap-2">
           <CiBookmarkPlus size={24} />
           Add to Watch List
         </Button>
