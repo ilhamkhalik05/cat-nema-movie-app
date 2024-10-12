@@ -29,7 +29,7 @@ export function NavMenu() {
       title: 'Movies',
       icon: MdOutlineLocalMovies,
       link: '/movies',
-      available: false,
+      available: true,
     },
     {
       title: 'Watch List',
