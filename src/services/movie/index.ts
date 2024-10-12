@@ -1,1 +1,3 @@
-export * from './fetchNowPlayingMovies'
+export * from './fetchNowPlayingMovies';
+export * from './fetchPopularMovies';
+export * from './fetchTopRatedMovies';
