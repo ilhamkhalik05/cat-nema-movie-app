@@ -3,6 +3,7 @@ import { Button } from '../@shadcn-ui/button';
 import { CiBookmarkPlus } from 'react-icons/ci';
 import { PiShootingStarFill } from 'react-icons/pi';
 import { FaRegEye } from 'react-icons/fa';
+import { BiSolidErrorAlt } from 'react-icons/bi';
 
 type BannerContentProps = {
   titleOrName: string;
@@ -30,10 +31,17 @@ export function BannerContent(props: BannerContentProps) {
           </div>
         </div>
 
-        <p className="text-foreground/90 w-3/5 break-words">{overview || 'There is no overview for this item'}</p>
+        {overview ? (
+          <p className="w-3/5 text-foreground/90 text-start line-clamp-5 mb-4">{overview}</p>
+        ) : (
+          <div className="flex items-center gap-2 mb-3">
+            <BiSolidErrorAlt size={20} className="text-red-400" />
+            There is no overview for this item
+          </div>
+        )}
       </section>
 
-      <div className="flex items-center gap-3 mt-6">
+      <div className="flex items-center gap-3">
         <Button variant={'primary'} className="h-11 flex items-center gap-2 bg-red-500">
           <AiOutlinePlayCircle size={24} />
           Watch Now

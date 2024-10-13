@@ -19,11 +19,11 @@ export default function Banner({ bannerType, item }: BannerProps): React.ReactNo
   return (
     <div className="relative">
       <Image
-        className="brightness-[0.55] object-cover w-full h-screen"
+        className="brightness-[0.55] object-cover object-center w-full h-screen"
         src={`${API_BASE_IMG_URL}/${posterPath}`}
         alt={titleOrName}
-        width={1000}
-        height={1000}
+        width={3800}
+        height={3800}
       />
 
       <BannerContent titleOrName={titleOrName} popularity={popularity} voteAverage={voteAverage} overview={overview} />
