@@ -1,5 +1,7 @@
+import type { MovieDetails } from '@/lib/type';
 import { fetchNowPlayingMovies } from '@/services/movie';
 import { fetchNowPlayingTVSeries } from '@/services/tv';
+import { getLatestItemDetails } from '@/lib/utils';
 
 import Banner from '@/components/banner';
 import MovieCardList from '@/components/movie-card-list';
@@ -12,11 +14,11 @@ export default async function HomePage() {
     fetchNowPlayingTVSeries(),
   ]);
 
-  const latestMovie = nowPlayingMovies[nowPlayingMovies.length - 1];
+  const latestMovieDetails = await getLatestItemDetails({ itemType: 'movie', items: nowPlayingMovies });
 
   return (
     <>
-      <Banner bannerType="movie" item={latestMovie} />
+      <Banner bannerType="movie" item={latestMovieDetails as MovieDetails} />
 
       <main className="px-8 py-12 flex flex-col gap-20">
         <section>

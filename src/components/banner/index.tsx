@@ -1,17 +1,17 @@
 import Image from 'next/image';
 import { BannerContent } from './banner-content';
 import { API_BASE_IMG_URL } from '@/lib/api';
-import { Movie, TVSeries } from '@/lib/type';
+import { MovieDetails, TVSeriesDetails } from '@/lib/type';
 
 type BannerProps = {
   bannerType: 'tv-series' | 'movie';
-  item: Movie | TVSeries;
+  item: MovieDetails | TVSeriesDetails;
 };
 
 export default function Banner({ bannerType, item }: BannerProps): React.ReactNode {
   const isMovie = bannerType === 'movie';
-  const titleOrName = isMovie ? (item as Movie).title : (item as TVSeries).name;
-  const posterPath = isMovie ? (item as Movie).poster_path : (item as TVSeries).poster_path;
+  const titleOrName = isMovie ? (item as MovieDetails).title : (item as TVSeriesDetails).name;
+  const posterPath = isMovie ? (item as MovieDetails).poster_path : (item as TVSeriesDetails).poster_path;
   const popularity = item.popularity;
   const voteAverage = item.vote_average;
   const overview = item.overview;
@@ -26,12 +26,7 @@ export default function Banner({ bannerType, item }: BannerProps): React.ReactNo
         height={1000}
       />
 
-      <BannerContent
-        titleOrName={titleOrName}
-        popularity={popularity}
-        voteAverage={voteAverage}
-        overview={overview}
-      />
+      <BannerContent titleOrName={titleOrName} popularity={popularity} voteAverage={voteAverage} overview={overview} />
     </div>
   );
 }
