@@ -1,21 +1,33 @@
-import { fetchNowPlayingTVSeries, fetchPopularTVSeries, fetchTopRatedTVSeries } from '@/services/tv';
+import type { TVSeriesDetails } from '@/lib/type';
+import {
+  fetchNowPlayingTVSeries,
+  fetchPopularTVSeries,
+  fetchTopRatedTVSeries,
+  fetchTVSeriesDetailsById,
+} from '@/services/tv';
+import { getLatestItemDetails } from '@/lib/utils';
 
 import Banner from '@/components/banner';
 import Footer from '@/components/footer';
 import TVCardList from '@/components/tv-card-list';
 
-export default async function TVSeriesPage() {
+export default async function TVSeriesPage({ params }: { params: { id: string } }) {
+  const tvSeriesId = params.id && Number(params.id[0]);
+
   const [nowPlayingTVSeries, popularTVSeries, topRatedTVSeries] = await Promise.all([
     fetchNowPlayingTVSeries(),
     fetchPopularTVSeries(),
     fetchTopRatedTVSeries(),
   ]);
 
-  const latestTVSeries = nowPlayingTVSeries[nowPlayingTVSeries.length - 1];
+  // TV Series banner will be the details of the latest tv series if tvSeriesId is not given in params
+  const tvSeriesDetails = tvSeriesId && (await fetchTVSeriesDetailsById(tvSeriesId));
+  const tvSeriesBanner =
+    tvSeriesDetails || (await getLatestItemDetails({ itemType: 'tv-series', items: nowPlayingTVSeries }));
 
   return (
     <>
-      <Banner bannerType="tv-series" item={latestTVSeries} />
+      <Banner bannerType="tv-series" item={tvSeriesBanner as TVSeriesDetails} />
 
       <main className="px-8 py-12 flex flex-col gap-20">
         <section>
