@@ -1,6 +1,6 @@
 import { FaX } from 'react-icons/fa6';
 import { BrandLogo } from '../brand-logo';
-import { LoginModalToggle } from '../utils/login-modal-toggle';
+import { LoginButton } from '../utils/login-button';
 import { NavMenu } from './nav-menu';
 
 export function Sidenav({
@@ -23,7 +23,7 @@ export function Sidenav({
         </header>
 
         <NavMenu />
-        <LoginModalToggle className="mt-4 self-start px-8" />
+        <LoginButton className="mt-4 self-start px-8" />
       </div>
     </div>
   );

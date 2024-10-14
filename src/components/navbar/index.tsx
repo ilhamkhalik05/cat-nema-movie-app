@@ -1,6 +1,6 @@
 import { NavMenu } from './nav-menu';
 import { BrandLogo } from '../brand-logo';
-import { LoginModalToggle } from '../utils/login-modal-toggle';
+import { LoginButton } from '../utils/login-button';
 import { SidenavToggle } from './sidenav-toggle';
 
 export default function Navbar() {
@@ -17,7 +17,7 @@ export default function Navbar() {
 
       {/* Showing login modal toggle when on large screen and showing sidenav toggler when small screen */}
       <div className="hidden lg:block">
-        <LoginModalToggle />
+        <LoginButton />
       </div>
 
       <div className="block lg:hidden">
