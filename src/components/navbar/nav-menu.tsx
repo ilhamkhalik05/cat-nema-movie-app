@@ -44,19 +44,19 @@ export function NavMenu() {
   };
 
   return (
-    <nav className="flex items-center gap-6">
+    <nav className="flex flex-col gap-5 lg:flex-row lg:items-center lg:gap-6">
       {navMenuList.map((menu, idx) => {
         const menuIcon = configIcon(menu.icon);
         const isPathMatches = menu.link === pathname || (menu.link !== '/' && pathname.includes(menu.link));
-        const activeClass = 'text-foreground font-bold';
+        const activeClass = 'text-foreground font-bold border-foreground';
 
         return (
           <Link
             key={idx}
             href={menu.available ? menu.link : ''}
             className={cn(
-              'flex items-center gap-2.5 transition-all duration-200 select-none',
-              isPathMatches ? activeClass : 'text-foreground/80 hover:text-foreground',
+              'flex items-center gap-2.5 transition-all duration-200 select-none border-b lg:border-none pb-2',
+              isPathMatches ? activeClass : 'text-foreground/80 hover:text-foreground border-foreground/30',
             )}
           >
             {menuIcon}
