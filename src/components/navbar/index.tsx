@@ -1,7 +1,6 @@
-import { AiOutlineLogin } from 'react-icons/ai';
-import { Button } from '../@shadcn-ui/button';
 import { NavMenu } from './nav-menu';
 import { BrandLogo } from '../brand-logo';
+import { LoginButton } from '../utils/login-button';
 
 export default function Navbar() {
   return (
@@ -13,10 +12,7 @@ export default function Navbar() {
       </div>
 
       {/* Right Side */}
-      <Button variant={'primary'} className="px-5 flex items-center gap-1.5 font-[600] rounded-xl tracking-widest">
-        LOGIN
-        <AiOutlineLogin size={24} />
-      </Button>
+      <LoginButton />
     </header>
   );
 }
