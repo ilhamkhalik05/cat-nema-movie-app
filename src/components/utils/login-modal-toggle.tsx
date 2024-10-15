@@ -1,16 +1,16 @@
 'use client';
 
+import { useState } from 'react';
+import { cn } from '@/lib/utils';
 import { AiOutlineLogin } from 'react-icons/ai';
 import { Button } from '../@shadcn-ui/button';
-import { useState } from 'react';
 import LoginModal from '../login-modal';
-import { cn } from '@/lib/utils';
 
 export function LoginModalToggle({ className }: { className?: string }) {
   const [showModal, setShowModal] = useState(false);
 
-  const openModalHandler = () => {
-    setShowModal(true);
+  const openModalHandler = async () => {
+   setShowModal(true)
   };
 
   const closeModalHandler = () => {

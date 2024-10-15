@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { BannerContent } from './banner-content';
-import { API_BASE_IMG_URL } from '@/lib/api';
+import { API_BASE_IMG_URL } from '@/lib/env';
 import { MovieDetails, TVSeriesDetails } from '@/lib/type';
 
 type BannerProps = {

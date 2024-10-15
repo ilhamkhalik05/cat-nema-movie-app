@@ -1,16 +1,12 @@
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
-import { API_BASE_IMG_URL } from './api';
+import { API_BASE_IMG_URL } from './env';
 import { Movie, MovieDetails, TVSeries, TVSeriesDetails } from './type';
 import { fetchMovieDetailsById } from '@/services/movie';
 import { fetchTVSeriesDetailsById } from '@/services/tv';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
-}
-
-export function getApiImage(imageSrc: string) {
-  return `${API_BASE_IMG_URL}/${imageSrc}`;
 }
 
 type GetLatestItemDetailsProps = {

@@ -1,4 +1,5 @@
-import { API_BASE_URL, API_BASE_URL_VERSION, API_KEY, handleFetchApiError } from '@/lib/api';
+import { handleFetchApiError } from '@/lib/api';
+import { API_BASE_URL, API_BASE_URL_VERSION, API_KEY } from '@/lib/env';
 import { Movie } from '@/lib/type';
 import axios from 'axios';
 

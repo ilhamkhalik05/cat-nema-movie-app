@@ -1,10 +1,10 @@
-import Image from 'next/image';
 import { TVSeries } from '@/lib/type';
-import { Card, CardContent, CardTitle } from '../@shadcn-ui/card';
-import { getApiImage } from '@/lib/utils';
+import { getApiImage } from '@/lib/api';
 import { fallbackCardImage } from '@/lib/assets';
+import { Card, CardContent, CardTitle } from '../@shadcn-ui/card';
 import { BrandLogo } from '../brand-logo';
 import { PiShootingStarFill } from 'react-icons/pi';
+import Image from 'next/image';
 import Link from 'next/link';
 
 export default function TVCardList({ tvSeries }: { tvSeries: TVSeries[] }) {
