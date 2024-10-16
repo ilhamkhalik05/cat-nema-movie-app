@@ -1,6 +1,5 @@
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
-import { API_BASE_IMG_URL } from './env';
 import { Movie, MovieDetails, TVSeries, TVSeriesDetails } from './type';
 import { fetchMovieDetailsById } from '@/services/movie';
 import { fetchTVSeriesDetailsById } from '@/services/tv';

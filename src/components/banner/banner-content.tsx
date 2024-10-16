@@ -1,9 +1,8 @@
-import { AiOutlinePlayCircle } from 'react-icons/ai';
-import { Button } from '../@shadcn-ui/button';
-import { CiBookmarkPlus } from 'react-icons/ci';
 import { PiShootingStarFill } from 'react-icons/pi';
 import { FaRegEye } from 'react-icons/fa';
 import { BiSolidErrorAlt } from 'react-icons/bi';
+import { AddToWatchlist } from '../utils/add-to-watchlist';
+import { WatchMovie } from '../utils/watch-movie';
 
 type BannerContentProps = {
   titleOrName: string;
@@ -41,15 +40,10 @@ export function BannerContent(props: BannerContentProps) {
         )}
       </section>
 
+      {/* Button Action */}
       <div className="flex items-center gap-3">
-        <Button variant={'primary'} className="h-11 flex items-center gap-2 bg-red-500">
-          <AiOutlinePlayCircle size={24} />
-          Watch Now
-        </Button>
-        <Button variant={'default'} className="h-11 flex items-center gap-2">
-          <CiBookmarkPlus size={24} />
-          Add to Watch List
-        </Button>
+        <WatchMovie />
+        <AddToWatchlist />
       </div>
     </div>
   );
