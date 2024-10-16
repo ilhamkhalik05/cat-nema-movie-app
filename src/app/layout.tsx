@@ -3,6 +3,7 @@ import { poppins } from '@/lib/font';
 import { APP_DESCRIPTION, APP_META_TITLE } from '@/lib/const';
 import NextAuthSessionProvider from './session-provider';
 import LoginModalProvider from '@/context/login-modal-context';
+import ToastProvider from './toast-provider';
 
 import Navbar from '@/components/navbar';
 import './globals.css';
@@ -26,6 +27,7 @@ export default function RootLayout({
             {children}
           </LoginModalProvider>
         </NextAuthSessionProvider>
+        <ToastProvider />
       </body>
     </html>
   );
