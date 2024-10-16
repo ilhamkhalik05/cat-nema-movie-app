@@ -34,8 +34,8 @@ export function NavMenu() {
     {
       title: 'Watch List',
       icon: IoMdList,
-      link: '/watch-list',
-      available: false,
+      link: '/watchlist',
+      available: true,
     },
   ];
 

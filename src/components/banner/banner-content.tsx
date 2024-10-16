@@ -9,10 +9,11 @@ type BannerContentProps = {
   popularity: number;
   voteAverage: number;
   overview: string;
+  isOnWatchlist?: boolean;
 };
 
 export function BannerContent(props: BannerContentProps) {
-  const { titleOrName, popularity, voteAverage, overview } = props;
+  const { titleOrName, popularity, voteAverage, overview, isOnWatchlist } = props;
   return (
     <div className="absolute left-0 top-1/2 translate-y-8 flex flex-col size-full px-8">
       <section className="flex flex-col gap-2">
@@ -43,7 +44,7 @@ export function BannerContent(props: BannerContentProps) {
       {/* Button Action */}
       <div className="flex items-center gap-3">
         <WatchMovie />
-        <AddToWatchlist />
+        {!isOnWatchlist && <AddToWatchlist />}
       </div>
     </div>
   );

@@ -1,17 +1,18 @@
 import Image from 'next/image';
 import { BannerContent } from './banner-content';
 import { API_BASE_IMG_URL } from '@/lib/env';
-import { MovieDetails, TVSeriesDetails } from '@/lib/type';
+import { Movie, MovieDetails, TVSeries, TVSeriesDetails } from '@/lib/type';
 
 type BannerProps = {
   bannerType: 'tv-series' | 'movie';
-  item: MovieDetails | TVSeriesDetails;
+  item: Movie | MovieDetails | TVSeries | TVSeriesDetails;
+  isOnWatchlist?: boolean;
 };
 
-export default function Banner({ bannerType, item }: BannerProps): React.ReactNode {
+export default function Banner({ bannerType, item, isOnWatchlist }: BannerProps): React.ReactNode {
   const isMovie = bannerType === 'movie';
-  const titleOrName = isMovie ? (item as MovieDetails).title : (item as TVSeriesDetails).name;
-  const posterPath = isMovie ? (item as MovieDetails).poster_path : (item as TVSeriesDetails).poster_path;
+  const titleOrName = isMovie ? (item as Movie).title : (item as TVSeries).name;
+  const posterPath = isMovie ? (item as Movie).poster_path : (item as TVSeriesDetails).poster_path;
   const popularity = item.popularity;
   const voteAverage = item.vote_average;
   const overview = item.overview;
@@ -26,7 +27,13 @@ export default function Banner({ bannerType, item }: BannerProps): React.ReactNo
         height={3800}
       />
 
-      <BannerContent titleOrName={titleOrName} popularity={popularity} voteAverage={voteAverage} overview={overview} />
+      <BannerContent
+        titleOrName={titleOrName}
+        popularity={popularity}
+        voteAverage={voteAverage}
+        overview={overview}
+        isOnWatchlist={isOnWatchlist}
+      />
     </div>
   );
 }
