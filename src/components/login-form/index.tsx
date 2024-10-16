@@ -8,16 +8,26 @@ import { Button } from '../@shadcn-ui/button';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { usePassword } from '@/hooks/usePassword';
+import { signIn } from 'next-auth/react';
+import { useContext } from 'react';
+import { LoginModalContext } from '@/context/login-modal-context';
+import { toast } from 'react-toastify';
+import { LOGIN_SUCCESS_MESSAGE, PASSWORD_INPUT_MIN_VALUE, USERNAME_INPUT_MIN_VALUE } from '@/lib/const';
 
 const LoginFormSchema = z.object({
-  username: z.string().min(3, 'Username must contain atleast 3 characters long'),
-  password: z.string().min(6, 'Password must contain atleast 6 characters long'),
+  username: z
+    .string()
+    .min(USERNAME_INPUT_MIN_VALUE, `Username must contain atleast ${USERNAME_INPUT_MIN_VALUE} characters long`),
+  password: z
+    .string()
+    .min(PASSWORD_INPUT_MIN_VALUE, `Password must contain atleast ${PASSWORD_INPUT_MIN_VALUE} characters long`),
 });
 
 type TLoginFormSchema = z.infer<typeof LoginFormSchema>;
 
 export default function LoginForm() {
   const { showPassword, togglePasswordHandler } = usePassword();
+  const { closeLoginModal } = useContext(LoginModalContext);
 
   const form = useForm<TLoginFormSchema>({
     defaultValues: {
@@ -27,8 +37,19 @@ export default function LoginForm() {
     resolver: zodResolver(LoginFormSchema),
   });
 
-  const onSubmitHandler: SubmitHandler<TLoginFormSchema> = async (input) => {
-    alert('Login Submitted');
+  const onSubmitHandler: SubmitHandler<TLoginFormSchema> = async ({ username, password }) => {
+    const res = await signIn('credentials', {
+      username,
+      password,
+      redirect: false,
+    });
+
+    if (!res?.ok) {
+      toast.error('Please input valid username and password');
+    } else {
+      toast.success(LOGIN_SUCCESS_MESSAGE);
+      closeLoginModal();
+    }
   };
 
   return (
@@ -67,8 +88,12 @@ export default function LoginForm() {
           )}
         />
 
-        <Button className="tracking-widest font-[700] select-none" type="submit">
-          LOGIN
+        <Button
+          className="tracking-widest font-[700] select-none disabled:opacity-80 disabled:cursor-not-allowed"
+          type="submit"
+          disabled={form.formState.isSubmitting}
+        >
+          {form.formState.isSubmitting ? 'WAIT A SEC...' : 'LOGIN'}
         </Button>
       </form>
     </Form>

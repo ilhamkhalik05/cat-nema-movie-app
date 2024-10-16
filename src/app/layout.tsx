@@ -1,9 +1,11 @@
 import type { Metadata } from 'next';
 import { poppins } from '@/lib/font';
 import { APP_DESCRIPTION, APP_META_TITLE } from '@/lib/const';
+import NextAuthSessionProvider from './session-provider';
+import LoginModalProvider from '@/context/login-modal-context';
+
 import Navbar from '@/components/navbar';
 import './globals.css';
-import NextAuthSessionProvider from './session-provider';
 
 export const metadata: Metadata = {
   title: APP_META_TITLE,
@@ -19,8 +21,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${poppins.className} antialiased`}>
         <NextAuthSessionProvider>
-          <Navbar />
-          {children}
+          <LoginModalProvider>
+            <Navbar />
+            {children}
+          </LoginModalProvider>
         </NextAuthSessionProvider>
       </body>
     </html>

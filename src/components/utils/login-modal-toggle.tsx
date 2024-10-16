@@ -1,34 +1,47 @@
 'use client';
 
-import { useState } from 'react';
+import { LOGOUT_SUCCESS_MESSAGE } from '@/lib/const';
+import { useContext } from 'react';
+import { signOut, useSession } from 'next-auth/react';
+import { LoginModalContext } from '@/context/login-modal-context';
 import { cn } from '@/lib/utils';
-import { AiOutlineLogin } from 'react-icons/ai';
+import { AiOutlineLogin, AiOutlineLogout } from 'react-icons/ai';
 import { Button } from '../@shadcn-ui/button';
+import { toast } from 'react-toastify';
 import LoginModal from '../login-modal';
 
 export function LoginModalToggle({ className }: { className?: string }) {
-  const [showModal, setShowModal] = useState(false);
+  const { status } = useSession();
+  const { showLoginModal, openLoginModal } = useContext(LoginModalContext);
 
-  const openModalHandler = async () => {
-   setShowModal(true)
+  const onSignoutHandler = async () => {
+    await signOut({ redirect: false }).then(() => toast.error(LOGOUT_SUCCESS_MESSAGE));
   };
 
-  const closeModalHandler = () => {
-    setShowModal(false);
-  };
+  if (status === 'authenticated')
+    return (
+      <Button
+        variant={'primary'}
+        className={cn('flex items-center gap-1.5 font-[600] lg:rounded-xl tracking-widest px-5', className)}
+        onClick={onSignoutHandler}
+      >
+        <AiOutlineLogout size={24} />
+        LOGOUT
+      </Button>
+    );
 
   return (
     <>
       <Button
         variant={'primary'}
         className={cn('flex items-center gap-1.5 font-[600] lg:rounded-xl tracking-widest px-5', className)}
-        onClick={openModalHandler}
+        onClick={openLoginModal}
       >
         LOGIN
         <AiOutlineLogin size={24} />
       </Button>
 
-      {showModal && <LoginModal closeModalHandler={closeModalHandler} />}
+      {showLoginModal && <LoginModal />}
     </>
   );
 }

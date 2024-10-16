@@ -6,9 +6,13 @@ import { FaX } from 'react-icons/fa6';
 import { Button } from '../@shadcn-ui/button';
 import { BrandLogo } from '../brand-logo';
 import { useNoScrollPage } from '@/hooks/useNoScrollPage';
+import { useContext } from 'react';
+import { LoginModalContext } from '@/context/login-modal-context';
 
-export default function LoginModal({ closeModalHandler }: { closeModalHandler: () => void }) {
+export default function LoginModal() {
   useNoScrollPage();
+  const { closeLoginModal } = useContext(LoginModalContext);
+
   return (
     <div
       className="fixed inset-0 z-20 w-screen h-screen flex items-center justify-center bg-black/70"
@@ -30,7 +34,7 @@ export default function LoginModal({ closeModalHandler }: { closeModalHandler: (
           size={'icon'}
           variant={'ghost'}
           className="absolute top-3.5 right-3.5 size-7 cursor-pointer"
-          onClick={closeModalHandler}
+          onClick={closeLoginModal}
         >
           <FaX size={18} />
         </Button>
