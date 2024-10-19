@@ -1,7 +1,7 @@
 import { toast } from 'react-toastify';
 
 export function showUnavailableFeatureNotification() {
-  toast.error('Oopss, this feature is not available yet');
+  toast.error('Sorry, this feature is not available yet');
 }
 
 export function showMustLoginNotification() {
