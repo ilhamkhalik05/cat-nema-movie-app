@@ -36,7 +36,7 @@ export async function fetchSessionId({
 
     return sessionRes.data.session_id;
   } catch (error) {
-    console.error(error);
+    if (error instanceof Error) console.error(error.message);
     return null;
   }
 }

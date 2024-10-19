@@ -3,7 +3,7 @@ import { API_BASE_URL, API_BASE_URL_VERSION, API_KEY } from '@/lib/env';
 import { Movie } from '@/lib/type';
 import axios from 'axios';
 
-export async function fetchTopRatedMovies(): Promise<Movie[] | []> {
+export async function fetchTopRatedMovies(): Promise<Movie[]> {
   try {
     const res = await axios.get(`${API_BASE_URL}/${API_BASE_URL_VERSION}/movie/top_rated?api_key=${API_KEY}`);
 
@@ -13,7 +13,7 @@ export async function fetchTopRatedMovies(): Promise<Movie[] | []> {
 
     return res.data.results;
   } catch (error) {
-    console.error(error);
+    if (error instanceof Error) console.error(error.message);
     return [];
   }
 }

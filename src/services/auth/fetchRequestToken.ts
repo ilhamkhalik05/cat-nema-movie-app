@@ -12,7 +12,7 @@ export async function fetchRequestToken(): Promise<string | null> {
 
     return res.data.request_token;
   } catch (error) {
-    console.error(error);
+    if (error instanceof Error) console.error(error.message);
     return null;
   }
 }

@@ -13,7 +13,7 @@ export async function fetchMovieDetailsById(movieId: number): Promise<MovieDetai
 
     return res.data;
   } catch (error) {
-    console.error(error);
+    if (error instanceof Error) console.error(error.message);
     return null;
   }
 }
