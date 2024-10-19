@@ -1,15 +1,18 @@
 'use client';
 
+import { useSession } from 'next-auth/react';
 import { cn } from '@/lib/utils';
-import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { IconType } from 'react-icons';
 import { FaTv } from 'react-icons/fa';
 import { IoMdList } from 'react-icons/io';
 import { LuLayoutDashboard } from 'react-icons/lu';
 import { MdOutlineLocalMovies } from 'react-icons/md';
+import { showMustLoginNotification } from '@/lib/toast';
+import Link from 'next/link';
 
 export function NavMenu() {
+  const { data: session } = useSession();
   const pathname = usePathname();
 
   const navMenuList = [
@@ -17,25 +20,25 @@ export function NavMenu() {
       title: 'Home',
       icon: LuLayoutDashboard,
       link: '/',
-      available: true,
+      isProtected: false,
     },
     {
       title: 'TV Series',
       icon: FaTv,
       link: '/tv-series',
-      available: true,
+      isProtected: false,
     },
     {
       title: 'Movies',
       icon: MdOutlineLocalMovies,
       link: '/movies',
-      available: true,
+      isProtected: false,
     },
     {
       title: 'Watch List',
       icon: IoMdList,
       link: '/watchlist',
-      available: true,
+      isProtected: true,
     },
   ];
 
@@ -43,27 +46,36 @@ export function NavMenu() {
     return <Icon size={20} />;
   };
 
-  return (
-    <nav className="flex flex-col gap-5 lg:flex-row lg:items-center lg:gap-6">
-      {navMenuList.map((menu, idx) => {
-        const menuIcon = configIcon(menu.icon);
-        const isPathMatches = menu.link === pathname || (menu.link !== '/' && pathname.includes(menu.link));
-        const activeClass = 'text-foreground font-bold border-foreground';
+  const renderNavMenuListItem = () => {
+    return navMenuList.map((menu, idx) => {
+      const menuIcon = configIcon(menu.icon);
+      const activeClass = 'text-foreground font-bold border-foreground';
+      const isPathMatches = menu.link === pathname || (menu.link !== '/' && pathname.includes(menu.link));
+      const className = cn(
+        'flex items-center gap-2.5 transition-all duration-200 select-none border-b lg:border-none pb-2',
+        isPathMatches ? activeClass : 'text-foreground/80 hover:text-foreground border-foreground/30',
+      );
 
+      const isNotLoginAndProtectedRoute = menu.isProtected && !session;
+
+      // Show must login notification when unauthenticated user access the protected routes
+      if (isNotLoginAndProtectedRoute) {
         return (
-          <Link
-            key={idx}
-            href={menu.available ? menu.link : ''}
-            className={cn(
-              'flex items-center gap-2.5 transition-all duration-200 select-none border-b lg:border-none pb-2',
-              isPathMatches ? activeClass : 'text-foreground/80 hover:text-foreground border-foreground/30',
-            )}
-          >
+          <button className={className} onClick={() => showMustLoginNotification()}>
             {menuIcon}
             {menu.title}
-          </Link>
+          </button>
         );
-      })}
-    </nav>
-  );
+      }
+
+      return (
+        <Link key={idx} href={menu.link} className={className}>
+          {menuIcon}
+          {menu.title}
+        </Link>
+      );
+    });
+  };
+
+  return <nav className="flex flex-col gap-5 lg:flex-row lg:items-center lg:gap-6">{renderNavMenuListItem()}</nav>;
 }
