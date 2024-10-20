@@ -1,10 +1,10 @@
 import { Movie } from '@/lib/type';
 import { fallbackCardImage } from '@/lib/assets';
-import { getApiImage } from '@/lib/api';
 import { BrandLogo } from '../brand-logo';
 import { PiShootingStarFill } from 'react-icons/pi';
 import { Card, CardContent, CardTitle } from '../@shadcn-ui/card';
-import Image from 'next/image';
+import { getApiImage } from '@/lib/api';
+import { ImageWithFallback } from '../utils/image-with-fallback';
 import Link from 'next/link';
 
 export default function MovieCardList({ movies }: { movies: Movie[] }) {
@@ -14,12 +14,15 @@ export default function MovieCardList({ movies }: { movies: Movie[] }) {
         <Link href={`/movies/${movie.id}`} key={idx}>
           <Card className="group relative cursor-pointer h-40">
             {/* Backdrop Movie Image */}
-            <Image
-              className="size-full object-cover rounded-xl group-hover:brightness-[0.45] transition-all duration-200"
-              src={movie.backdrop_path ? getApiImage(movie.backdrop_path) : fallbackCardImage.src}
+            <ImageWithFallback
+              className="size-full object-cover rounded-xl group-hover:brightness-[0.45]"
+              src={getApiImage(movie.backdrop_path)}
               alt="Error occurred"
               width={500}
               height={500}
+              loading="lazy"
+              fallbackSrc={fallbackCardImage.src}
+              placeholderSrc={fallbackCardImage.src}
             />
 
             {/* Movie Content */}

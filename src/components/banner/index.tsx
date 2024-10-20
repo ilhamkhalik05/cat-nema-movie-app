@@ -1,7 +1,8 @@
-import Image from 'next/image';
 import { BannerContent } from './banner-content';
-import { API_BASE_IMG_URL } from '@/lib/env';
 import { Movie, MovieDetails, TVSeries, TVSeriesDetails } from '@/lib/type';
+import { ImageWithFallback } from '../utils/image-with-fallback';
+import { getApiImage } from '@/lib/api';
+import { fallbackCardImage } from '@/lib/assets';
 
 type BannerProps = {
   bannerType: 'tv-series' | 'movie';
@@ -19,12 +20,15 @@ export default function Banner({ bannerType, item, isOnWatchlist }: BannerProps)
 
   return (
     <div className="relative">
-      <Image
+      {/* Banner Image */}
+      <ImageWithFallback
         className="brightness-[0.55] object-cover object-center w-full h-screen select-none"
-        src={`${API_BASE_IMG_URL}/${posterPath}`}
+        src={getApiImage(posterPath)}
         alt={titleOrName}
         width={3800}
         height={3800}
+        fallbackSrc={fallbackCardImage.src} // Need its own fallback image
+        loading="eager"
       />
 
       <BannerContent

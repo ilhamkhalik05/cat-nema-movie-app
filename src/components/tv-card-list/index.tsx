@@ -4,7 +4,7 @@ import { fallbackCardImage } from '@/lib/assets';
 import { Card, CardContent, CardTitle } from '../@shadcn-ui/card';
 import { BrandLogo } from '../brand-logo';
 import { PiShootingStarFill } from 'react-icons/pi';
-import Image from 'next/image';
+import { ImageWithFallback } from '../utils/image-with-fallback';
 import Link from 'next/link';
 
 export default function TVCardList({ tvSeries }: { tvSeries: TVSeries[] }) {
@@ -14,12 +14,15 @@ export default function TVCardList({ tvSeries }: { tvSeries: TVSeries[] }) {
         <Link href={`/tv-series/${tv.id}`} key={idx}>
           <Card className="group relative cursor-pointer h-40">
             {/* Backdrop TV Series Image */}
-            <Image
-              className="size-full object-cover rounded-xl group-hover:brightness-[0.45] transition-all duration-200"
-              src={tv.backdrop_path ? getApiImage(tv.backdrop_path) : fallbackCardImage.src}
+            <ImageWithFallback
+              className="size-full object-cover rounded-xl group-hover:brightness-[0.45]"
+              src={getApiImage(tv.backdrop_path)}
               alt="Error occurred"
               width={500}
               height={500}
+              loading="lazy"
+              fallbackSrc={fallbackCardImage.src}
+              placeholderSrc={fallbackCardImage.src}
             />
 
             {/* TV Series Content */}
