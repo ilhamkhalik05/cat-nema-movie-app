@@ -13,6 +13,7 @@ import { useContext } from 'react';
 import { LoginModalContext } from '@/context/login-modal-context';
 import { toast } from 'react-toastify';
 import { LOGIN_SUCCESS_MESSAGE, PASSWORD_INPUT_MIN_VALUE, USERNAME_INPUT_MIN_VALUE } from '@/lib/const';
+import { SidenavContext } from '@/context/sidenav-context';
 
 const LoginFormSchema = z.object({
   username: z
@@ -28,6 +29,7 @@ type TLoginFormSchema = z.infer<typeof LoginFormSchema>;
 export default function LoginForm() {
   const { showPassword, togglePasswordHandler } = usePassword();
   const { closeLoginModal } = useContext(LoginModalContext);
+  const { closeSidenav } = useContext(SidenavContext);
 
   const form = useForm<TLoginFormSchema>({
     defaultValues: {
@@ -49,12 +51,13 @@ export default function LoginForm() {
     } else {
       toast.success(LOGIN_SUCCESS_MESSAGE);
       closeLoginModal();
+      closeSidenav();
     }
   };
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmitHandler)} className="space-y-5">
+      <form onSubmit={form.handleSubmit(onSubmitHandler)} className="flex flex-col gap-5">
         <FormField
           control={form.control}
           name="username"
@@ -89,7 +92,7 @@ export default function LoginForm() {
         />
 
         <Button
-          className="tracking-widest font-[700] select-none disabled:opacity-80 disabled:cursor-not-allowed"
+          className="self-start w-full sm:w-auto mt-2 tracking-widest font-[700] select-none disabled:opacity-80 disabled:cursor-not-allowed"
           type="submit"
           disabled={form.formState.isSubmitting}
         >

@@ -19,11 +19,11 @@ export default function Navbar() {
 
       {/* Showing login modal toggle when on large screen and showing sidenav toggler when small screen */}
       <LoginModalContextProvider>
-        <div className="hidden lg:block">
-          <LoginModalToggle />
-        </div>
-
         <SidenavContextProvider>
+          <div className="hidden lg:block">
+            <LoginModalToggle />
+          </div>
+
           <div className="block lg:hidden">
             <SidenavToggle />
           </div>

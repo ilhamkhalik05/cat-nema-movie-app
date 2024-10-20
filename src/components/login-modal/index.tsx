@@ -1,13 +1,13 @@
 'use client';
 
 import LoginForm from '../login-form';
-import { Card } from '../@shadcn-ui/card';
 import { FaX } from 'react-icons/fa6';
 import { Button } from '../@shadcn-ui/button';
 import { BrandLogo } from '../brand-logo';
 import { useNoScrollPage } from '@/hooks/useNoScrollPage';
 import { useContext } from 'react';
 import { LoginModalContext } from '@/context/login-modal-context';
+import { Card } from '../@shadcn-ui/card';
 
 export default function LoginModal() {
   useNoScrollPage();
@@ -15,10 +15,13 @@ export default function LoginModal() {
 
   return (
     <div
-      className="fixed inset-0 z-20 w-screen h-screen flex items-center justify-center bg-black/70"
-      onClick={(e) => e.stopPropagation()}
+      className={`fixed inset-0 z-50 w-screen h-screen flex items-end sm:items-center justify-center bg-black/80`}
+      onClick={closeLoginModal}
     >
-      <Card className="z-50 relative px-8 pt-7 pb-10 w-2/3 md:w-1/2 lg:w-[40%] -translate-y-10 rounded-md bg-zinc-950/90">
+      <Card
+        className={`z-50 relative px-8 pt-7 pb-10 w-full h-4/5 sm:h-auto rounded-t-3xl animate-slide-up sm:animate-none sm:rounded-md sm:w-2/3 md:w-1/2 lg:w-[40%] -translate-y-10 bg-zinc-950`}
+        onClick={(e) => e.stopPropagation()}
+      >
         <div className="flex flex-col">
           <header className="space-y-1.5">
             <BrandLogo containerClassName="flex gap-2" imageClassName="size-8" titleClassName="text-2xl" />
@@ -33,10 +36,10 @@ export default function LoginModal() {
         <Button
           size={'icon'}
           variant={'ghost'}
-          className="absolute top-3.5 right-3.5 size-7 cursor-pointer"
+          className="absolute top-4 right-6 size-7 cursor-pointer"
           onClick={closeLoginModal}
         >
-          <FaX size={18} />
+          <FaX size={22} />
         </Button>
       </Card>
     </div>
