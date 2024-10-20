@@ -1,3 +1,5 @@
+'use client';
+
 import { TVSeries } from '@/lib/type';
 import { getApiImage } from '@/lib/api';
 import { fallbackCardImage } from '@/lib/assets';
@@ -5,13 +7,17 @@ import { Card, CardContent, CardTitle } from '../@shadcn-ui/card';
 import { BrandLogo } from '../brand-logo';
 import { PiShootingStarFill } from 'react-icons/pi';
 import { ImageWithFallback } from '../utils/image-with-fallback';
+import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 
 export default function TVCardList({ tvSeries }: { tvSeries: TVSeries[] }) {
+  const pathname = usePathname();
+  const isOnWatchlist = pathname.startsWith('/watchlist');
+
   return (
     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5">
       {tvSeries.map((tv, idx) => (
-        <Link href={`/tv-series/${tv.id}`} key={idx}>
+        <Link href={isOnWatchlist ? `/watchlist/tv-series/${tv.id}` : `/tv-series/${tv.id}`} key={idx}>
           <Card className="group relative cursor-pointer h-40">
             {/* Backdrop TV Series Image */}
             <ImageWithFallback
