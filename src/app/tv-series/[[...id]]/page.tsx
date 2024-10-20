@@ -13,7 +13,7 @@ import TVCardList from '@/components/tv-card-list';
 import { PageSectionTitle } from '@/components/utils/page-section-title';
 
 export default async function TVSeriesPage({ params }: { params: { id: string } }) {
-  const tvSeriesId = getItemIdByParamsId(params.id);
+  const tvSeriesId = params.id && getItemIdByParamsId(params.id);
 
   const [nowPlayingTVSeries, popularTVSeries, topRatedTVSeries] = await Promise.all([
     fetchNowPlayingTVSeries(),

@@ -13,7 +13,7 @@ import MovieCardList from '@/components/movie-card-list';
 import { PageSectionTitle } from '@/components/utils/page-section-title';
 
 export default async function MoviesPage({ params }: { params: { id: string } }) {
-  const movieId = getItemIdByParamsId(params.id);
+  const movieId = params.id && getItemIdByParamsId(params.id);
 
   const [nowPlayingMovies, popularMovies, topRatedMovies] = await Promise.all([
     fetchNowPlayingMovies(),
