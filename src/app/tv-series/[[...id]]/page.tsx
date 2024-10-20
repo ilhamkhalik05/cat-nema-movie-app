@@ -5,7 +5,7 @@ import {
   fetchTopRatedTVSeries,
   fetchTVSeriesDetailsById,
 } from '@/services/tv';
-import { getLatestItemDetails } from '@/lib/utils';
+import { getItemIdByParamsId, getLatestItemDetails } from '@/lib/utils';
 
 import Banner from '@/components/banner';
 import Footer from '@/components/footer';
@@ -13,7 +13,7 @@ import TVCardList from '@/components/tv-card-list';
 import { PageSectionTitle } from '@/components/utils/page-section-title';
 
 export default async function TVSeriesPage({ params }: { params: { id: string } }) {
-  const tvSeriesId = params.id && Number(params.id[0]);
+  const tvSeriesId = getItemIdByParamsId(params.id);
 
   const [nowPlayingTVSeries, popularTVSeries, topRatedTVSeries] = await Promise.all([
     fetchNowPlayingTVSeries(),

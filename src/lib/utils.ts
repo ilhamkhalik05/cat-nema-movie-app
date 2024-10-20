@@ -26,3 +26,7 @@ export async function getLatestItemDetails({
 
   return latestItemDetails;
 }
+
+export function getItemIdByParamsId(paramsId: string | []) {
+  return Number(paramsId || paramsId[0]);
+}
