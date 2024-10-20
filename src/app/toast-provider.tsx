@@ -4,7 +4,7 @@ import React from 'react';
 import { poppins } from '@/lib/font';
 import { ToastContainer } from 'react-toastify';
 
-import 'react-toastify/dist/ReactToastify.css';
+import 'react-toastify/ReactToastify.css';
 import { cn } from '@/lib/utils';
 
 export default function ToastProvider() {
