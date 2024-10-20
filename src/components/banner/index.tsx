@@ -3,15 +3,25 @@ import { Movie, MovieDetails, TVSeries, TVSeriesDetails } from '@/lib/type';
 import { ImageWithFallback } from '../utils/image-with-fallback';
 import { getApiImage } from '@/lib/api';
 import { fallbackCardImage } from '@/lib/assets';
+import { fetchMovieWatchlist } from '@/services/movie';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/app/api/auth/[...nextauth]/auth-options';
+import { fetchTvSeriesWatchlist } from '@/services/tv';
 
 type BannerProps = {
   bannerType: 'tv-series' | 'movie';
   item: Movie | MovieDetails | TVSeries | TVSeriesDetails;
-  isOnWatchlist?: boolean;
 };
 
-export default function Banner({ bannerType, item, isOnWatchlist }: BannerProps): React.ReactNode {
+export default async function Banner({ bannerType, item }: BannerProps) {
+  const session = await getServerSession(authOptions);
+  const sessionId = session?.user?.id as string;
+
+  const id = item.id;
   const isMovie = bannerType === 'movie';
+  const watchlistItem = isMovie ? await fetchMovieWatchlist(sessionId) : await fetchTvSeriesWatchlist(sessionId);
+  const isOnWatchlist = watchlistItem.some((item) => item.id === id);
+
   const titleOrName = isMovie ? (item as Movie).title : (item as TVSeries).name;
   const posterPath = isMovie ? (item as Movie).poster_path : (item as TVSeriesDetails).poster_path;
   const popularity = item.popularity;
@@ -32,6 +42,8 @@ export default function Banner({ bannerType, item, isOnWatchlist }: BannerProps)
       />
 
       <BannerContent
+        bannerType={bannerType}
+        id={id}
         titleOrName={titleOrName}
         popularity={popularity}
         voteAverage={voteAverage}

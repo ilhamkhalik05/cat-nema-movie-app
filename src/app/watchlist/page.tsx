@@ -22,19 +22,19 @@ export default async function WatchlistPage() {
   return (
     <>
       <Navbar />
-      {movieWatchlist && <Banner bannerType="movie" item={movieWatchlist[0]} isOnWatchlist={true} />}
+      {movieWatchlist && <Banner bannerType="movie" item={movieWatchlist[0]} />}
 
       <main className="px-8 py-12 flex flex-col gap-20">
         {movieWatchlist && (
           <section>
-            <PageSectionTitle>Watch your movie list below</PageSectionTitle>
+            <PageSectionTitle>Showing {movieWatchlist.length} of your movie watchlist</PageSectionTitle>
             <MovieCardList movies={movieWatchlist} />
           </section>
         )}
 
         {tvSeriesWatchlist && (
           <section>
-            <PageSectionTitle>Watch your tv series list below</PageSectionTitle>
+            <PageSectionTitle>Showing {tvSeriesWatchlist.length} of your tv series watchlist</PageSectionTitle>
             <TVCardList tvSeries={tvSeriesWatchlist} />
           </section>
         )}

@@ -22,7 +22,7 @@ export default async function WatchlistMoviesPage({ params }: { params: { id: st
   return (
     <>
       <Navbar />
-      {bannerItem && <Banner bannerType="movie" item={bannerItem} isOnWatchlist={true} />}
+      {bannerItem && <Banner bannerType="movie" item={bannerItem} />}
 
       <main className="px-8 py-12 flex flex-col gap-20">
         {movieWatchlist && (

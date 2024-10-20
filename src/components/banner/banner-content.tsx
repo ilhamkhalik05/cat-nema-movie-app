@@ -5,6 +5,8 @@ import { AddToWatchlist } from '../utils/add-to-watchlist';
 import { WatchMovie } from '../utils/watch-movie';
 
 type BannerContentProps = {
+  bannerType: 'movie' | 'tv-series';
+  id: number;
   titleOrName: string;
   popularity: number;
   voteAverage: number;
@@ -13,7 +15,7 @@ type BannerContentProps = {
 };
 
 export function BannerContent(props: BannerContentProps) {
-  const { titleOrName, popularity, voteAverage, overview, isOnWatchlist } = props;
+  const { bannerType, id, titleOrName, popularity, voteAverage, overview, isOnWatchlist } = props;
   return (
     <div className="absolute left-0 top-1/2 translate-y-8 flex flex-col size-full px-8">
       <section className="flex flex-col gap-2">
@@ -44,7 +46,7 @@ export function BannerContent(props: BannerContentProps) {
       {/* Button Action */}
       <div className="flex items-center gap-3">
         <WatchMovie />
-        {!isOnWatchlist && <AddToWatchlist />}
+        {!isOnWatchlist && <AddToWatchlist itemType={bannerType} itemId={id} />}
       </div>
     </div>
   );
