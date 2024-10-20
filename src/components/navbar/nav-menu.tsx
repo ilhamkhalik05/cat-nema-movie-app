@@ -61,7 +61,7 @@ export function NavMenu() {
       // Show must login notification when unauthenticated user access the protected routes
       if (isNotLoginAndProtectedRoute) {
         return (
-          <button className={className} onClick={() => showMustLoginNotification()}>
+          <button key={idx} className={className} onClick={() => showMustLoginNotification()}>
             {menuIcon}
             {menu.title}
           </button>
