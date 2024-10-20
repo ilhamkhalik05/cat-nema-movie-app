@@ -3,3 +3,4 @@ export * from './fetchPopularTVSeries';
 export * from './fetchTopRatedTVSeries';
 export * from './fetchTVSeriesDetailsById';
 export * from './fetchTvSeriesWatchlist';
+export * from './postTvSeriesToWatchlist';
