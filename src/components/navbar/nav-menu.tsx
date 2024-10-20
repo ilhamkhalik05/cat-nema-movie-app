@@ -50,7 +50,7 @@ export function NavMenu() {
     return navMenuList.map((menu, idx) => {
       const menuIcon = configIcon(menu.icon);
       const activeClass = 'text-foreground font-bold border-foreground';
-      const isPathMatches = menu.link === pathname || (menu.link !== '/' && pathname.includes(menu.link));
+      const isPathMatches = menu.link === pathname || (menu.link !== '/' && pathname.startsWith(menu.link));
       const className = cn(
         'flex items-center gap-2.5 transition-all duration-200 select-none border-b lg:border-none pb-2',
         isPathMatches ? activeClass : 'text-foreground/80 hover:text-foreground border-foreground/30',
