@@ -1,28 +1,20 @@
 'use client';
 
-import { useState } from 'react';
+import { useContext } from 'react';
+import { SidenavContext } from '@/context/sidenav-context';
 import { FaBars } from 'react-icons/fa';
 import { Button } from '../@shadcn-ui/button';
 import { Sidenav } from './sidenav';
 
 export function SidenavToggle() {
-  const [showSidenav, setShowSidenav] = useState(false);
-
-  const openSidenavHandler = () => {
-    setShowSidenav(true);
-  };
-
-  const closeSidenavHandler = () => {
-    setShowSidenav(false);
-  };
-
+  const { openSidenav } = useContext(SidenavContext);
   return (
     <>
-      <Button variant={'ghost'} size={'icon'} className='cursor-pointer' onClick={() => openSidenavHandler()}>
+      <Button variant={'ghost'} size={'icon'} className="cursor-pointer" onClick={openSidenav}>
         <FaBars className="text-white" size={24} />
       </Button>
 
-      <Sidenav showSidenav={showSidenav} closeSidenavHandler={closeSidenavHandler} />
+      <Sidenav />
     </>
   );
 }

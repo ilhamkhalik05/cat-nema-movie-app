@@ -1,6 +1,8 @@
 'use client';
 
+import { useContext } from 'react';
 import { useSession } from 'next-auth/react';
+import { SidenavContext } from '@/context/sidenav-context';
 import { cn } from '@/lib/utils';
 import { usePathname } from 'next/navigation';
 import { IconType } from 'react-icons';
@@ -12,6 +14,7 @@ import { showMustLoginNotification } from '@/lib/toast';
 import Link from 'next/link';
 
 export function NavMenu() {
+  const { closeSidenav } = useContext(SidenavContext);
   const { data: session } = useSession();
   const pathname = usePathname();
 
@@ -69,7 +72,7 @@ export function NavMenu() {
       }
 
       return (
-        <Link key={idx} href={menu.link} className={className}>
+        <Link key={idx} href={menu.link} className={className} onClick={closeSidenav}>
           {menuIcon}
           {menu.title}
         </Link>

@@ -1,15 +1,14 @@
+'use client';
+
+import { useContext } from 'react';
+import { SidenavContext } from '@/context/sidenav-context';
 import { FaX } from 'react-icons/fa6';
 import { BrandLogo } from '../brand-logo';
 import { LoginModalToggle } from '../utils/login-modal-toggle';
 import { NavMenu } from './nav-menu';
 
-export function Sidenav({
-  showSidenav,
-  closeSidenavHandler,
-}: {
-  showSidenav: boolean;
-  closeSidenavHandler: () => void;
-}) {
+export function Sidenav() {
+  const { showSidenav, closeSidenav } = useContext(SidenavContext);
   return (
     <div
       className={`${
@@ -19,7 +18,7 @@ export function Sidenav({
       <div className="flex flex-col gap-6">
         <header className="flex items-center justify-between">
           <BrandLogo />
-          <FaX size={24} onClick={closeSidenavHandler} />
+          <FaX size={24} onClick={closeSidenav} />
         </header>
 
         <NavMenu />

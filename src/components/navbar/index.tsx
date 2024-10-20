@@ -2,6 +2,8 @@ import { NavMenu } from './nav-menu';
 import { BrandLogo } from '../brand-logo';
 import { LoginModalToggle } from '../utils/login-modal-toggle';
 import { SidenavToggle } from './sidenav-toggle';
+import LoginModalContextProvider from '@/context/login-modal-context';
+import SidenavContextProvider from '@/context/sidenav-context';
 
 export default function Navbar() {
   return (
@@ -16,13 +18,17 @@ export default function Navbar() {
       </div>
 
       {/* Showing login modal toggle when on large screen and showing sidenav toggler when small screen */}
-      <div className="hidden lg:block">
-        <LoginModalToggle />
-      </div>
+      <LoginModalContextProvider>
+        <div className="hidden lg:block">
+          <LoginModalToggle />
+        </div>
 
-      <div className="block lg:hidden">
-        <SidenavToggle />
-      </div>
+        <SidenavContextProvider>
+          <div className="block lg:hidden">
+            <SidenavToggle />
+          </div>
+        </SidenavContextProvider>
+      </LoginModalContextProvider>
     </header>
   );
 }
