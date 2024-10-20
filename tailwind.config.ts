@@ -47,11 +47,6 @@ const config: Config = {
           '5': 'hsl(var(--chart-5))',
         },
       },
-      animation: {
-        'background-position-spin': 'background-position-spin 3000ms infinite alternate',
-        'slide-left': 'slide-left 0.3s ease-out forwards',
-        'slide-left-reverse': 'slide-left-reverse 0.3s ease-out forwards',
-      },
       keyframes: {
         'background-position-spin': {
           '0%': {
@@ -69,6 +64,23 @@ const config: Config = {
           '0%': { transform: 'translateX(0)' },
           '100%': { transform: 'translateX(100%)' },
         },
+        'rotation': {
+          '0%': { transform: 'rotate(0deg)' },
+          '100%': { transform: 'rotate(360deg)' },
+        },
+        'shimmering-image': {
+          '0%': { filter: 'brightness(1)' },
+          '50%': { filter: 'brightness(1.5)' },
+          '100%': { filter: 'brightness(1)' },
+        },
+      },
+      animation: {
+        'background-position-spin': 'background-position-spin 3000ms infinite alternate',
+        'slide-left': 'slide-left 0.3s ease-out forwards',
+        'slide-left-reverse': 'slide-left-reverse 0.3s ease-out forwards',
+        'rotation': 'rotation 1s linear infinite',
+        'rotation-reverse': 'rotation 0.5s linear infinite reverse',
+        'shimmering-image': 'shimmering-image 2s infinite',
       },
     },
   },
