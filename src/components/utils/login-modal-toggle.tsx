@@ -13,6 +13,7 @@ export function LoginModalToggle({ className }: { className?: string }) {
   const { status } = useSession();
   const { showLoginModal, openLoginModal } = useContext(LoginModalContext);
 
+  if (status === 'loading') return;
   if (status === 'authenticated') return <LogoutButton className={className} />;
 
   return (
