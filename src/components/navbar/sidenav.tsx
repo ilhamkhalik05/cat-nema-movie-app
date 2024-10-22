@@ -1,14 +1,13 @@
 'use client';
 
-import { useContext } from 'react';
-import { SidenavContext } from '@/context/sidenav-context';
+import { useSidenav } from '@/hooks/useSidenav';
 import { FaX } from 'react-icons/fa6';
 import { BrandLogo } from '../brand-logo';
 import { LoginModalToggle } from '../utils/login-modal-toggle';
 import { NavMenu } from './nav-menu';
 
 export function Sidenav() {
-  const { showSidenav, closeSidenav } = useContext(SidenavContext);
+  const { showSidenav, closeSidenav } = useSidenav();
   return (
     <div
       className={`${

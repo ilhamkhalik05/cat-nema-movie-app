@@ -1,5 +1,7 @@
 'use client';
 
+import { useLoginModal } from '@/hooks/useLoginModal';
+import { useSidenav } from '@/hooks/useSidenav';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '../@shadcn-ui/form';
 import { Input } from '../@shadcn-ui/input';
@@ -9,11 +11,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { usePassword } from '@/hooks/usePassword';
 import { signIn } from 'next-auth/react';
-import { useContext } from 'react';
 import { toast } from 'react-toastify';
 import { LOGIN_SUCCESS_MESSAGE, PASSWORD_INPUT_MIN_VALUE, USERNAME_INPUT_MIN_VALUE } from '@/lib/const';
-import { SidenavContext } from '@/context/sidenav-context';
-import { useLoginModal } from '@/hooks/useLoginModal';
 
 const LoginFormSchema = z.object({
   username: z
@@ -29,7 +28,7 @@ type TLoginFormSchema = z.infer<typeof LoginFormSchema>;
 export default function LoginForm() {
   const { showPassword, togglePasswordHandler } = usePassword();
   const { closeLoginModal } = useLoginModal();
-  const { closeSidenav } = useContext(SidenavContext);
+  const { closeSidenav } = useSidenav();
 
   const form = useForm<TLoginFormSchema>({
     defaultValues: {
