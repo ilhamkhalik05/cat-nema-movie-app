@@ -1,17 +1,16 @@
 'use client';
 
-import LoginForm from '../login-form';
+import { useLoginModal } from '@/hooks/useLoginModal';
+import { useNoScrollPage } from '@/hooks/useNoScrollPage';
 import { FaX } from 'react-icons/fa6';
 import { Button } from '../@shadcn-ui/button';
 import { BrandLogo } from '../brand-logo';
-import { useNoScrollPage } from '@/hooks/useNoScrollPage';
-import { useContext } from 'react';
-import { LoginModalContext } from '@/context/login-modal-context';
 import { Card } from '../@shadcn-ui/card';
+import LoginForm from '../login-form';
 
 export default function LoginModal() {
+  const { closeLoginModal } = useLoginModal();
   useNoScrollPage();
-  const { closeLoginModal } = useContext(LoginModalContext);
 
   return (
     <div

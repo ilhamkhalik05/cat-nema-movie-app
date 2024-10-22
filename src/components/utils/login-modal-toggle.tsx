@@ -1,8 +1,7 @@
 'use client';
 
-import { useContext } from 'react';
+import { useLoginModal } from '@/hooks/useLoginModal';
 import { useSession } from 'next-auth/react';
-import { LoginModalContext } from '@/context/login-modal-context';
 import { cn } from '@/lib/utils';
 import { AiOutlineLogin } from 'react-icons/ai';
 import { Button } from '../@shadcn-ui/button';
@@ -11,7 +10,7 @@ import LoginModal from '../login-modal';
 
 export function LoginModalToggle({ className }: { className?: string }) {
   const { status } = useSession();
-  const { showLoginModal, openLoginModal } = useContext(LoginModalContext);
+  const { showLoginModal, openLoginModal } = useLoginModal();
 
   if (status === 'loading') return;
   if (status === 'authenticated') return <LogoutButton className={className} />;

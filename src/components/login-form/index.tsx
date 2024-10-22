@@ -10,10 +10,10 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { usePassword } from '@/hooks/usePassword';
 import { signIn } from 'next-auth/react';
 import { useContext } from 'react';
-import { LoginModalContext } from '@/context/login-modal-context';
 import { toast } from 'react-toastify';
 import { LOGIN_SUCCESS_MESSAGE, PASSWORD_INPUT_MIN_VALUE, USERNAME_INPUT_MIN_VALUE } from '@/lib/const';
 import { SidenavContext } from '@/context/sidenav-context';
+import { useLoginModal } from '@/hooks/useLoginModal';
 
 const LoginFormSchema = z.object({
   username: z
@@ -28,7 +28,7 @@ type TLoginFormSchema = z.infer<typeof LoginFormSchema>;
 
 export default function LoginForm() {
   const { showPassword, togglePasswordHandler } = usePassword();
-  const { closeLoginModal } = useContext(LoginModalContext);
+  const { closeLoginModal } = useLoginModal();
   const { closeSidenav } = useContext(SidenavContext);
 
   const form = useForm<TLoginFormSchema>({
