@@ -1,3 +1,6 @@
+'use client';
+
+import { useNavbarBlur } from '@/hooks/useNavbarBlur';
 import { NavMenu } from './nav-menu';
 import { BrandLogo } from '../brand-logo';
 import { LoginModalToggle } from '../utils/login-modal-toggle';
@@ -6,8 +9,14 @@ import LoginModalContextProvider from '@/context/login-modal-context';
 import SidenavContextProvider from '@/context/sidenav-context';
 
 export default function Navbar() {
+  const { isScrolled, blurClassName } = useNavbarBlur();
+
   return (
-    <header className="flex justify-between items-center py-5 px-8 backdrop-blur-lg w-full z-10 fixed top-0">
+    <header
+      className={`${
+        isScrolled && blurClassName
+      } flex justify-between items-center py-5 px-8 w-full z-10 fixed top-0 transition-all duration-300`}
+    >
       <div className="flex items-center gap-14">
         <BrandLogo />
 
