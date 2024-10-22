@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 
 export function useNavbarBlur() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const blurClassName = 'backdrop-blur-lg';
   const ACTIVE_BLUR_HEIGHT = 80;
 
   useEffect(() => {
@@ -20,5 +19,5 @@ export function useNavbarBlur() {
     };
   }, []);
 
-  return { isScrolled, blurClassName };
+  return { isScrolled };
 }

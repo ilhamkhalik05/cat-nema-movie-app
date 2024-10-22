@@ -9,12 +9,12 @@ import LoginModalContextProvider from '@/context/login-modal-context';
 import SidenavContextProvider from '@/context/sidenav-context';
 
 export default function Navbar() {
-  const { isScrolled, blurClassName } = useNavbarBlur();
+  const { isScrolled } = useNavbarBlur();
 
   return (
     <header
       className={`${
-        isScrolled && blurClassName
+        isScrolled && 'backdrop-blur-lg'
       } flex justify-between items-center py-5 px-8 w-full z-10 fixed top-0 transition-all duration-300`}
     >
       <div className="flex items-center gap-14">
