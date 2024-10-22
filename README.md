@@ -1,36 +1,17 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CatNema Movie App
 
-## Getting Started
+CatNema is a movie web application that utilizes the [TMDb API](https://api.themoviedb.org) to provide users with access to a wide range of movies and TV series. This project is intended for learning purposes only.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Display Now Playing**: Browse the currently playing movies and TV series.
+- **Popular Movies & TV Series**: Discover trending movies and TV series.
+- **Top-Rated Movies & TV Series**: Explore highly rated movies and TV series.
+- **Add to Watchlist**: Save movies and TV series to your watchlist (requires a [TMDb API](https://api.themoviedb.org) account).
+- **Session-Based Authentication**: User authentication is handled using NextAuth for a seamless experience.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Possible Future Developments
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **User Favorites**: Display a list of movies and TV series that users have marked as favorites.
+- **Rate a Movie or TV Series**: Allow users to rate movies and TV series directly through the app.
+- **User Profile Page**: Create a dedicated page for users to view and edit their profiles.
