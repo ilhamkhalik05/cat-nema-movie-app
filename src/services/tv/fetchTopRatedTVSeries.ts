@@ -1,11 +1,13 @@
+import type { TVSeries } from '@/lib/type';
 import { handleFetchApiError } from '@/lib/api';
 import { API_BASE_URL, API_BASE_URL_VERSION, API_KEY } from '@/lib/env';
-import { TVSeries } from '@/lib/type';
+import { cache } from 'react';
 import axios from 'axios';
 
-export async function fetchTopRatedTVSeries(): Promise<TVSeries[]> {
+export const fetchTopRatedTVSeries = cache(async (): Promise<TVSeries[]> => {
   try {
-    const res = await axios.get(`${API_BASE_URL}/${API_BASE_URL_VERSION}/tv/top_rated?api_key=${API_KEY}`);
+    const endpoint = `${API_BASE_URL}/${API_BASE_URL_VERSION}/tv/top_rated?api_key=${API_KEY}`;
+    const res = await axios.get(endpoint);
 
     if (res.status !== 200) {
       handleFetchApiError('fetch top rated tv series', res.statusText);
@@ -16,4 +18,4 @@ export async function fetchTopRatedTVSeries(): Promise<TVSeries[]> {
     if (error instanceof Error) console.error(error.message);
     return [];
   }
-}
+});
