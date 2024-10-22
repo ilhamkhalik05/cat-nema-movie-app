@@ -1,7 +1,7 @@
 'use client';
 
 import { RiLogoutCircleLine } from 'react-icons/ri';
-import { Button } from '../@shadcn-ui/button';
+import { Button } from '../@shadcn-ui/ui/button';
 import { signOut } from 'next-auth/react';
 import { toast } from 'react-toastify';
 import { LOGOUT_SUCCESS_MESSAGE } from '@/lib/const';

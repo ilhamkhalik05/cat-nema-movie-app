@@ -4,7 +4,7 @@ import { useLoginModal } from '@/hooks/useLoginModal';
 import { useSession } from 'next-auth/react';
 import { cn } from '@/lib/utils';
 import { AiOutlineLogin } from 'react-icons/ai';
-import { Button } from '../@shadcn-ui/button';
+import { Button } from '../@shadcn-ui/ui/button';
 import { LogoutButton } from './logout-button';
 import LoginModal from '../login-modal';
 

@@ -3,7 +3,7 @@
 import { TVSeries } from '@/lib/type';
 import { getApiImage } from '@/lib/api';
 import { fallbackCardImage } from '@/lib/assets';
-import { Card, CardContent, CardTitle } from '../@shadcn-ui/card';
+import { Card, CardContent, CardTitle } from '../@shadcn-ui/ui/card';
 import { BrandLogo } from '../brand-logo';
 import { PiShootingStarFill } from 'react-icons/pi';
 import { ImageWithFallback } from '../utils/image-with-fallback';

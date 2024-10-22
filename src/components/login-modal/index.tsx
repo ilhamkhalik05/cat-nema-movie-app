@@ -3,9 +3,9 @@
 import { useLoginModal } from '@/hooks/useLoginModal';
 import { useNoScrollPage } from '@/hooks/useNoScrollPage';
 import { FaX } from 'react-icons/fa6';
-import { Button } from '../@shadcn-ui/button';
+import { Button } from '../@shadcn-ui/ui/button';
 import { BrandLogo } from '../brand-logo';
-import { Card } from '../@shadcn-ui/card';
+import { Card } from '../@shadcn-ui/ui/card';
 import LoginForm from '../login-form';
 
 export default function LoginModal() {

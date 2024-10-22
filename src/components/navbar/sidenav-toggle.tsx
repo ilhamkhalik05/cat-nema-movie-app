@@ -2,7 +2,7 @@
 
 import { useSidenav } from '@/hooks/useSidenav';
 import { FaBars } from 'react-icons/fa';
-import { Button } from '../@shadcn-ui/button';
+import { Button } from '../@shadcn-ui/ui/button';
 import { Sidenav } from './sidenav';
 
 export function SidenavToggle() {

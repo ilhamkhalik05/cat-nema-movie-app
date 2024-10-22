@@ -1,7 +1,7 @@
 'use client';
 
 import { showMustLoginNotification } from '@/lib/toast';
-import { Button } from '../@shadcn-ui/button';
+import { Button } from '../@shadcn-ui/ui/button';
 import { CiBookmarkPlus } from 'react-icons/ci';
 import { useSession } from 'next-auth/react';
 import { postMovieToWatchlist } from '@/services/movie';

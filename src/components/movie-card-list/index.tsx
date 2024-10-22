@@ -4,7 +4,7 @@ import { Movie } from '@/lib/type';
 import { fallbackCardImage } from '@/lib/assets';
 import { BrandLogo } from '../brand-logo';
 import { PiShootingStarFill } from 'react-icons/pi';
-import { Card, CardContent, CardTitle } from '../@shadcn-ui/card';
+import { Card, CardContent, CardTitle } from '../@shadcn-ui/ui/card';
 import { getApiImage } from '@/lib/api';
 import { ImageWithFallback } from '../utils/image-with-fallback';
 import { usePathname } from 'next/navigation';

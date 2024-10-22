@@ -3,10 +3,10 @@
 import { useLoginModal } from '@/hooks/useLoginModal';
 import { useSidenav } from '@/hooks/useSidenav';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '../@shadcn-ui/form';
-import { Input } from '../@shadcn-ui/input';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '../@shadcn-ui/ui/form';
+import { Input } from '../@shadcn-ui/ui/input';
 import { z } from 'zod';
-import { Button } from '../@shadcn-ui/button';
+import { Button } from '../@shadcn-ui/ui/button';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { usePassword } from '@/hooks/usePassword';

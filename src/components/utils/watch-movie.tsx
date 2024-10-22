@@ -1,7 +1,7 @@
 'use client';
 
 import { AiOutlinePlayCircle } from 'react-icons/ai';
-import { Button } from '../@shadcn-ui/button';
+import { Button } from '../@shadcn-ui/ui/button';
 import { showUnavailableFeatureNotification } from '@/lib/toast';
 
 export function WatchMovie() {
