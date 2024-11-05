@@ -2,9 +2,7 @@ import { authOptions } from '@/app/api/auth/[...nextauth]/auth-options';
 import { getServerSession } from 'next-auth';
 import { fetchTVSeriesDetailsById, fetchTvSeriesWatchlist } from '@/services/tv';
 
-import Navbar from '@/components/navbar';
 import Banner from '@/components/banner';
-import Footer from '@/components/footer';
 import TVCardList from '@/components/tv-card-list';
 import { PageSectionTitle } from '@/components/utils/page-section-title';
 import { getItemIdByParamsId } from '@/lib/utils';
@@ -19,7 +17,6 @@ export default async function WatchlistMoviesPage({ params }: { params: { id: st
 
   return (
     <>
-      <Navbar />
       {bannerItem && <Banner bannerType="tv-series" item={bannerItem} />}
 
       <main className="px-8 py-12 flex flex-col gap-20">
@@ -30,8 +27,6 @@ export default async function WatchlistMoviesPage({ params }: { params: { id: st
           </section>
         )}
       </main>
-
-      <Footer />
     </>
   );
 }

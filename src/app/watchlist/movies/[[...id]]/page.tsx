@@ -1,13 +1,11 @@
 import { authOptions } from '@/app/api/auth/[...nextauth]/auth-options';
 import { getServerSession } from 'next-auth';
+import { getItemIdByParamsId } from '@/lib/utils';
 import { fetchMovieDetailsById, fetchMovieWatchlist } from '@/services/movie';
 
-import Navbar from '@/components/navbar';
 import MovieCardList from '@/components/movie-card-list';
 import Banner from '@/components/banner';
-import Footer from '@/components/footer';
 import { PageSectionTitle } from '@/components/utils/page-section-title';
-import { getItemIdByParamsId } from '@/lib/utils';
 
 export default async function WatchlistMoviesPage({ params }: { params: { id: string } }) {
   const session = await getServerSession(authOptions);
@@ -21,7 +19,6 @@ export default async function WatchlistMoviesPage({ params }: { params: { id: st
 
   return (
     <>
-      <Navbar />
       {bannerItem && <Banner bannerType="movie" item={bannerItem} />}
 
       <main className="px-8 py-12 flex flex-col gap-20">
@@ -32,8 +29,6 @@ export default async function WatchlistMoviesPage({ params }: { params: { id: st
           </section>
         )}
       </main>
-
-      <Footer />
     </>
   );
 }

@@ -3,11 +3,9 @@ import { authOptions } from '../api/auth/[...nextauth]/auth-options';
 import { fetchMovieWatchlist } from '@/services/movie';
 import { fetchTvSeriesWatchlist } from '@/services/tv';
 
-import Navbar from '@/components/navbar';
 import MovieCardList from '@/components/movie-card-list';
 import TVCardList from '@/components/tv-card-list';
 import Banner from '@/components/banner';
-import Footer from '@/components/footer';
 import { PageSectionTitle } from '@/components/utils/page-section-title';
 
 export default async function WatchlistPage() {
@@ -21,7 +19,6 @@ export default async function WatchlistPage() {
 
   return (
     <>
-      <Navbar />
       {movieWatchlist && <Banner bannerType="movie" item={movieWatchlist[movieWatchlist.length - 1]} />}
 
       <main className="px-8 py-12 flex flex-col gap-20">
@@ -39,8 +36,6 @@ export default async function WatchlistPage() {
           </section>
         )}
       </main>
-
-      <Footer />
     </>
   );
 }
